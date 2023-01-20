@@ -1,0 +1,701 @@
+-- Exploit Environment
+EV = getgenv()
+
+if not EV then return warn('EXPLOIT UNSUPPORTED') end
+
+-- Friendship whitelist
+EV.Friendly = {""}
+
+-- SETTINGS
+
+EV.AutoLP = false
+EV.AimbotEnabled = true
+
+EV.LockKey = "q"
+EV.LockKey = string.upper(EV.LockKey)
+
+-- Distance between you and the player
+EV.MaxDistance = 250
+EV.TeamCheck = false 
+EV.AimPart = "Torso" 
+EV.Sensitivity = 0.099 
+EV.CircleSides = 64 
+EV.CircleColor = Color3.fromRGB(255, 255, 255) 
+EV.CircleTransparency = 0.7 
+HideCircle = true
+EV.CircleRadius = 80
+EV.CircleFilled = false
+EV.CircleVisible = false 
+EV.CircleThickness = 0
+-- SETTINGS
+
+-- Others Instances
+
+local Bad_Ware = Instance.new("ScreenGui")
+local OthersFrame = Instance.new("Frame")
+local OthersTitle = Instance.new("TextLabel")
+local AimlockTitle = Instance.new("TextLabel")
+local AimlockSwitch = Instance.new("TextButton")
+local RangeTitle = Instance.new("TextLabel")
+local RangeSwitch = Instance.new("Frame")
+local Button = Instance.new("ImageButton")
+local AimlockKeyTitle = Instance.new("TextLabel")
+local LockKeyBox = Instance.new("TextBox")
+local AimlockKeyStatus = Instance.new("TextLabel")
+local RangeValue = Instance.new("TextLabel")
+local MaxDistanceTitle = Instance.new("TextLabel")
+local MaxDistanceSwitch = Instance.new("Frame")
+local Button_2 = Instance.new("ImageButton")
+local MaxDistanceValue = Instance.new("TextLabel")
+local AimPartTitle = Instance.new("TextLabel")
+local AimPartSwitch = Instance.new("TextButton")
+
+-- Others instances
+
+--Properties:
+
+Bad_Ware.Name = "MRED"
+Bad_Ware.Parent = game:GetService("CoreGui")
+Bad_Ware.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Bad_Ware.ResetOnSpawn = false
+Bad_Ware.IgnoreGuiInset = true
+Bad_Ware.DisplayOrder = 100000000
+
+OthersFrame.Name = "OthersFrame"
+OthersFrame.Parent = Axtarium_Red
+OthersFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+OthersFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OthersFrame.BorderSizePixel = 3
+OthersFrame.Position = UDim2.new(0.387942922, 0, 0.1155109461, 0)
+OthersFrame.Size = UDim2.new(0, 180, 0, 417)
+OthersFrame.Visible = false
+
+OthersTitle.Name = "OthersTitle"
+OthersTitle.Parent = OthersFrame
+OthersTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OthersTitle.BackgroundTransparency = 1.000
+OthersTitle.Position = UDim2.new(0.0722223073, 0, 0.0204122514, 0)
+OthersTitle.Size = UDim2.new(0, 151, 0, 25)
+OthersTitle.Font = Enum.Font.Cartoon
+OthersTitle.Text = "Others"
+OthersTitle.TextColor3 = Color3.fromRGB(25, 232, 255)
+OthersTitle.TextSize = 22.000
+OthersTitle.TextStrokeColor3 = Color3.fromRGB(43, 255, 241)
+OthersTitle.TextStrokeTransparency = 0.770
+
+AimlockTitle.Name = "AimlockTitle"
+AimlockTitle.Parent = OthersFrame
+AimlockTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AimlockTitle.BackgroundTransparency = 1.000
+AimlockTitle.Position = UDim2.new(0.0777777806, 0, 0.229712814, 0)
+AimlockTitle.Size = UDim2.new(0, 151, 0, 25)
+AimlockTitle.Font = Enum.Font.Cartoon
+AimlockTitle.Text = "Aimlock"
+AimlockTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+AimlockTitle.TextSize = 20.000
+AimlockTitle.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+AimlockTitle.TextStrokeTransparency = 0.770
+
+AimlockSwitch.Name = "AimlockSwitch"
+AimlockSwitch.Parent = OthersFrame
+AimlockSwitch.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+AimlockSwitch.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AimlockSwitch.BorderSizePixel = 2
+AimlockSwitch.Position = UDim2.new(0.13333334, 0, 0.293414682, 0)
+AimlockSwitch.Size = UDim2.new(0, 130, 0, 29)
+AimlockSwitch.Font = Enum.Font.SourceSansBold
+AimlockSwitch.Text = "Disabled"
+AimlockSwitch.TextColor3 = Color3.fromRGB(255, 105, 105)
+AimlockSwitch.TextSize = 20.000
+
+RangeTitle.Name = "RangeTitle"
+RangeTitle.Parent = OthersFrame
+RangeTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RangeTitle.BackgroundTransparency = 1.000
+RangeTitle.Position = UDim2.new(0.0777777806, 0, 0.383502781, 0)
+RangeTitle.Size = UDim2.new(0, 151, 0, 25)
+RangeTitle.Font = Enum.Font.Cartoon
+RangeTitle.Text = "Range"
+RangeTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+RangeTitle.TextSize = 17.000
+RangeTitle.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+RangeTitle.TextStrokeTransparency = 0.770
+
+RangeSwitch.Name = "RangeSwitch"
+RangeSwitch.Parent = OthersFrame
+RangeSwitch.BackgroundColor3 = Color3.fromRGB(238, 238, 238)
+RangeSwitch.BorderSizePixel = 0
+RangeSwitch.Position = UDim2.new(0.105555892, 0, 0.545921981, -10)
+RangeSwitch.Size = UDim2.new(0.782999992, 0, -0.0411922894, 20)
+
+Button.Name = "Button"
+Button.Parent = RangeSwitch
+Button.BackgroundColor3 = Color3.fromRGB(255, 124, 48)
+Button.BorderColor3 = Color3.fromRGB(153, 74, 28)
+Button.Position = UDim2.new(0.800000012, 0, -1.99199998, 0)
+Button.Size = UDim2.new(-0.0307116341, 10, 4.95125008, 0)
+
+AimlockKeyTitle.Name = "AimlockKeyTitle"
+AimlockKeyTitle.Parent = OthersFrame
+AimlockKeyTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AimlockKeyTitle.BackgroundTransparency = 1.000
+AimlockKeyTitle.Position = UDim2.new(0.0777777806, 0, 0.540674329, 0)
+AimlockKeyTitle.Size = UDim2.new(0, 151, 0, 25)
+AimlockKeyTitle.Font = Enum.Font.Cartoon
+AimlockKeyTitle.Text = "Lock key"
+AimlockKeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+AimlockKeyTitle.TextSize = 17.000
+AimlockKeyTitle.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+AimlockKeyTitle.TextStrokeTransparency = 0.770
+
+LockKeyBox.Name = "LockKeyBox"
+LockKeyBox.Parent = OthersFrame
+LockKeyBox.BackgroundColor3 = Color3.fromRGB(173, 173, 173)
+LockKeyBox.BorderColor3 = Color3.fromRGB(132, 132, 132)
+LockKeyBox.BorderSizePixel = 3
+LockKeyBox.Position = UDim2.new(0.144444451, 0, 0.617801905, 0)
+LockKeyBox.Size = UDim2.new(0, 35, 0, 35)
+LockKeyBox.Font = Enum.Font.Code
+LockKeyBox.Text = ""
+LockKeyBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+LockKeyBox.TextSize = 24.000
+LockKeyBox.TextWrapped = true
+
+AimlockKeyStatus.Name = "AimlockKeyStatus"
+AimlockKeyStatus.Parent = OthersFrame
+AimlockKeyStatus.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AimlockKeyStatus.BackgroundTransparency = 1.000
+AimlockKeyStatus.Position = UDim2.new(0.394444466, 0, 0.617168605, 0)
+AimlockKeyStatus.Size = UDim2.new(0, 95, 0, 35)
+AimlockKeyStatus.Font = Enum.Font.Cartoon
+AimlockKeyStatus.Text = "Current Lock Key is "
+AimlockKeyStatus.TextColor3 = Color3.fromRGB(252, 255, 29)
+AimlockKeyStatus.TextScaled = true
+AimlockKeyStatus.TextSize = 13.000
+AimlockKeyStatus.TextStrokeColor3 = Color3.fromRGB(252, 255, 47)
+AimlockKeyStatus.TextStrokeTransparency = 0.700
+AimlockKeyStatus.TextWrapped = true
+
+RangeValue.Name = "RangeValue"
+RangeValue.Parent = OthersFrame
+RangeValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RangeValue.BackgroundTransparency = 1.000
+RangeValue.Position = UDim2.new(0.0777777806, 0, 0.44183585, 0)
+RangeValue.Size = UDim2.new(0, 151, 0, 25)
+RangeValue.Font = Enum.Font.Cartoon
+RangeValue.Text = "80"
+RangeValue.TextColor3 = Color3.fromRGB(103, 255, 166)
+RangeValue.TextSize = 17.000
+RangeValue.TextStrokeColor3 = Color3.fromRGB(103, 255, 166)
+RangeValue.TextStrokeTransparency = 0.770
+
+MaxDistanceTitle.Name = "MaxDistanceTitle"
+MaxDistanceTitle.Parent = OthersFrame
+MaxDistanceTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MaxDistanceTitle.BackgroundTransparency = 1.000
+MaxDistanceTitle.Position = UDim2.new(0.0833333358, 0, 0.718803465, 0)
+MaxDistanceTitle.Size = UDim2.new(0, 151, 0, 25)
+MaxDistanceTitle.Font = Enum.Font.Cartoon
+MaxDistanceTitle.Text = "Max distance"
+MaxDistanceTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+MaxDistanceTitle.TextSize = 17.000
+MaxDistanceTitle.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+MaxDistanceTitle.TextStrokeTransparency = 0.770
+
+MaxDistanceSwitch.Name = "MaxDistanceSwitch"
+MaxDistanceSwitch.Parent = OthersFrame
+MaxDistanceSwitch.BackgroundColor3 = Color3.fromRGB(238, 238, 238)
+MaxDistanceSwitch.BorderSizePixel = 0
+MaxDistanceSwitch.Position = UDim2.new(0.116667002, 0, 0.856383741, -10)
+MaxDistanceSwitch.Size = UDim2.new(0.782999992, 0, -0.0410000011, 20)
+
+Button_2.Name = "Button"
+Button_2.Parent = MaxDistanceSwitch
+Button_2.BackgroundColor3 = Color3.fromRGB(255, 124, 48)
+Button_2.BorderColor3 = Color3.fromRGB(153, 74, 28)
+Button_2.Position = UDim2.new(0.25, 0, -1.99199998, 0)
+Button_2.Size = UDim2.new(-0.0307116341, 10, 4.95125008, 0)
+
+MaxDistanceValue.Name = "MaxDistanceValue"
+MaxDistanceValue.Parent = OthersFrame
+MaxDistanceValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MaxDistanceValue.BackgroundTransparency = 1.000
+MaxDistanceValue.Position = UDim2.new(0.0833333358, 0, 0.757272959, 0)
+MaxDistanceValue.Size = UDim2.new(0, 151, 0, 25)
+MaxDistanceValue.Font = Enum.Font.Cartoon
+MaxDistanceValue.Text = "250"
+MaxDistanceValue.TextColor3 = Color3.fromRGB(103, 255, 166)
+MaxDistanceValue.TextSize = 17.000
+MaxDistanceValue.TextStrokeColor3 = Color3.fromRGB(103, 255, 166)
+MaxDistanceValue.TextStrokeTransparency = 0.770
+
+AimPartTitle.Name = "AimPartTitle"
+AimPartTitle.Parent = OthersFrame
+AimPartTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AimPartTitle.BackgroundTransparency = 1.000
+AimPartTitle.Position = UDim2.new(0.0777777806, 0, 0.850697935, 0)
+AimPartTitle.Size = UDim2.new(0, 151, 0, 25)
+AimPartTitle.Font = Enum.Font.Cartoon
+AimPartTitle.Text = "Aim part"
+AimPartTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+AimPartTitle.TextSize = 17.000
+AimPartTitle.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+AimPartTitle.TextStrokeTransparency = 0.770
+
+AimPartSwitch.Name = "AimPartSwitch"
+AimPartSwitch.Parent = OthersFrame
+AimPartSwitch.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+AimPartSwitch.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AimPartSwitch.BorderSizePixel = 2
+AimPartSwitch.Position = UDim2.new(0.138888896, 0, 0.909721613, 0)
+AimPartSwitch.Size = UDim2.new(0, 130, 0, 29)
+AimPartSwitch.Font = Enum.Font.SourceSansBold
+AimPartSwitch.Text = "Torso"
+AimPartSwitch.TextColor3 = Color3.fromRGB(96, 99, 255)
+AimPartSwitch.TextSize = 20.000
+
+-- Others properties
+
+local function TSZVF_fake_script() -- Main.LocalScript 
+	local script = Instance.new('LocalScript', OthersFrame)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+	
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(TSZVF_fake_script)()
+
+local function HAUBAIJ_fake_script() -- AimlockSwitch.LocalScript 
+	local script = Instance.new('LocalScript', AimlockSwitch)
+
+	local button__ = script.Parent
+	local clicked = false
+	
+	local switchColors = {
+		["on"] = {
+			["color"] = Color3.fromRGB(148, 255, 131)
+		},
+		["off"] = {
+			["color"] = Color3.fromRGB(255, 105, 105)
+		}
+	}
+	
+	local function AimlockOn()
+	
+		button__.TextColor3 = switchColors.on.color
+		button__.Text = "Enabled"
+		EV.AimbotEnabled = true
+		if HideCircle == false then
+			EV.CircleVisible = true 
+		else
+			EV.CircleVisible = false
+		end
+	
+	end
+	
+	local function AimlockOff()
+	
+		button__.TextColor3 = switchColors.off.color
+		button__.Text = "Disabled"
+		EV.AimbotEnabled = false
+		EV.CircleVisible = false 
+	end
+	
+	button__.MouseButton1Click:Connect(function()
+		if clicked == false then
+			clicked = true
+			AimlockOn()
+		else
+			clicked = false
+			AimlockOff()
+		end
+	end)
+	if EV.AimbotEnabled == true then
+		clicked = true
+		AimlockOn()
+	else
+		clicked = false
+		AimlockOff()
+	end
+end
+coroutine.wrap(HAUBAIJ_fake_script)()
+local function JMUD_fake_script() -- RangeSwitch.Handler 
+	local script = Instance.new('LocalScript', RangeSwitch)
+
+	local Slider = script.Parent
+	local SliderBtn = Slider.Button
+	local Player = game:GetService("Players").LocalPlayer
+	local UIS = game:GetService("UserInputService")
+	local RuS = game:GetService("RunService")
+	local RangeValueLabel = script.Parent.Parent.RangeValue
+	
+	-- Properties
+	local held = false
+	local step = 0.01
+	local percentage = 0
+	
+	function snap(number, factor)
+		if factor == 0 then
+			return number
+		else
+			return math.floor(number/factor+0.5)*factor
+		end
+	end
+	
+	UIS.InputEnded:connect(function(input, processed)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			held = false
+		end
+	end)
+	
+	SliderBtn.MouseButton1Down:connect(function()
+		held = true
+	end)
+	
+	RuS.RenderStepped:connect(function(delta)
+		if held then
+			local MousePos = UIS:GetMouseLocation().X
+			local BtnPos = SliderBtn.Position
+			local SliderSize = Slider.AbsoluteSize.X
+			local SliderPos = Slider.AbsolutePosition.X
+			local pos = snap((MousePos-SliderPos)/SliderSize,step)
+			percentage = math.clamp(pos,0,1)
+			SliderBtn.Position = UDim2.new(percentage,0,BtnPos.Y.Scale, BtnPos.Y.Offset)
+			local finalRadiusValue = math.round((percentage * 100))
+			if EV.CircleRadius ~= finalRadiusValue then
+				EV.CircleRadius = finalRadiusValue
+				RangeValueLabel.Text = tostring(finalRadiusValue)
+			end
+		end
+	end)
+	SliderBtn.Position = UDim2.new((EV.CircleRadius/100),0,SliderBtn.Position.Y.Scale,SliderBtn.Position.Y.Offset)
+	RangeValueLabel.Text = tostring(EV.CircleRadius)
+end
+coroutine.wrap(JMUD_fake_script)()
+local function BDHJMKP_fake_script() -- LockKeyBox.LocalScript 
+	local script = Instance.new('LocalScript', LockKeyBox)
+
+	local box = script.Parent
+	
+	local function changeTL(newKeybind)
+		local title__ = script.Parent.Parent.AimlockKeyStatus
+		title__.Text = "Current Lock Key is \""..tostring(newKeybind).."\""
+	end
+	changeTL(tostring(EV.LockKey))
+	box.FocusLost:Connect(function(enterPressed, inputCaused)
+		if enterPressed then
+			local inputText = box.Text
+			if #inputText ~= 1 then
+				box.Text = ""
+				return
+			else
+				EV.LockKey = string.upper(box.Text)
+				changeTL(string.upper(box.Text))
+				box.Text = ""
+			end
+		end
+	end)
+	
+end
+coroutine.wrap(BDHJMKP_fake_script)()
+local function ASXHJ_fake_script() -- MaxDistanceSwitch.Handler 
+	local script = Instance.new('LocalScript', MaxDistanceSwitch)
+
+	local Slider = script.Parent
+	local SliderBtn = Slider.Button
+	local Player = game:GetService("Players").LocalPlayer
+	local UIS = game:GetService("UserInputService")
+	local RuS = game:GetService("RunService")
+	local MaxDisValue = script.Parent.Parent.MaxDistanceValue
+	
+	-- Properties
+	local held_ = false
+	local step = 0.050
+	local percentage = 0
+	
+	function snap(number, factor)
+		if factor == 0 then
+			return number
+		else
+			return math.floor(number/factor+0.5)*factor
+		end
+	end
+	
+	UIS.InputEnded:connect(function(input, processed)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			held_ = false
+		end
+	end)
+	
+	SliderBtn.MouseButton1Down:connect(function()
+		held_ = true
+	end)
+	
+	RuS.RenderStepped:connect(function(delta)
+		if held_ then
+			local MousePos = UIS:GetMouseLocation().X
+			local BtnPos = SliderBtn.Position
+			local SliderSize = Slider.AbsoluteSize.X
+			local SliderPos = Slider.AbsolutePosition.X
+			local pos = snap((MousePos-SliderPos)/SliderSize,step)
+			percentage = math.clamp(pos,0,1)
+			SliderBtn.Position = UDim2.new(percentage,0,BtnPos.Y.Scale, BtnPos.Y.Offset)
+			local finalRadiusValue = math.round((percentage * 1000))
+			if EV.MaxDistance ~= finalRadiusValue then
+				EV.MaxDistance = finalRadiusValue
+				MaxDisValue.Text = finalRadiusValue
+			end
+		end
+	end)
+	SliderBtn.Position = UDim2.new((EV.MaxDistance/1000),0,SliderBtn.Position.Y.Scale,SliderBtn.Position.Y.Offset)
+	MaxDisValue.Text = tostring(EV.MaxDistance)
+end
+coroutine.wrap(ASXHJ_fake_script)()
+local function FXKDH_fake_script() -- AimPartSwitch.LocalScript 
+	local script = Instance.new('LocalScript', AimPartSwitch)
+
+	local button__ = script.Parent
+	local clicked = false
+	
+	local switchColors = {
+		["torso"] = {
+			["color"] = Color3.fromRGB(96, 99, 255)
+		},
+		["head"] = {
+			["color"] = Color3.fromRGB(255, 70, 70)
+		}
+	}
+	
+	local function AimlockTorso()
+		button__.TextColor3 = switchColors.torso.color
+		button__.Text = "Torso"
+		EV.AimPart = "Torso"
+	end
+	
+	local function AimlockHead()
+		button__.TextColor3 = switchColors.head.color
+		button__.Text = "Head"
+		EV.AimPart = "Head"
+	end
+	
+	button__.MouseButton1Click:Connect(function()
+		if clicked == false then
+			clicked = true
+			AimlockHead()
+		else
+			clicked = false
+			AimlockTorso()
+		end
+	end)
+
+	if EV.AimPart == "Torso" then
+		clicked = false
+		AimlockTorso()
+	elseif EV.AimPart == "Head" then
+		clicked = true
+		AimlockHead()
+	end
+	
+end
+coroutine.wrap(FXKDH_fake_script)()
+
+-- AIMLOCK
+local Camera = workspace.CurrentCamera
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local Holding = false
+local lastTarget = nil
+local locked = false
+
+local FOVCircle = Drawing.new("Circle")
+FOVCircle.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+FOVCircle.Radius = EV.CircleRadius
+FOVCircle.Filled = EV.CircleFilled
+FOVCircle.Color = EV.CircleColor
+FOVCircle.Visible = EV.CircleVisible
+FOVCircle.Radius = EV.CircleRadius
+FOVCircle.Transparency = EV.CircleTransparency
+FOVCircle.NumSides = EV.CircleSides
+FOVCircle.Thickness = EV.CircleThickness
+
+local function isPlayerInFrontOfPlayer(player1, player2)
+    local dirToOtherPlayer = (player2.Character.PrimaryPart.Position - player1.Character.PrimaryPart.Position).unit
+    return player1.Character.PrimaryPart.CFrame.LookVector:Dot(dirToOtherPlayer) > 0.45
+end
+
+local function GetClosestPlayer()
+    local MaximumDistance = EV.CircleRadius
+    local Target = nil
+
+    for _, v in next, Players:GetPlayers() do
+        if v.Name ~= LocalPlayer.Name then
+            if EV.TeamCheck == true then
+                if v.Team ~= LocalPlayer.Team then
+                    if v.Character ~= nil then
+                        if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+                            if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+                                local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+                                local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+                                local dist = math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude)
+                                if VectorDistance < MaximumDistance and dist <= EV.MaxDistance and not table.find(EV.Friendly, v.Name) and isPlayerInFrontOfPlayer(game.Players.LocalPlayer, v) == true then
+                                    Target = v
+                                end
+                            end
+                        end
+                    end
+                end
+            else
+                if v.Character ~= nil then
+                    if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+                        if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+                            local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+                            local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+                            local dist = math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude)
+                            if VectorDistance < MaximumDistance and dist < EV.MaxDistance and not table.find(EV.Friendly, v.Name) and isPlayerInFrontOfPlayer(game.Players.LocalPlayer, v) == true then
+                                Target = v
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    return Target
+end
+
+UserInputService.InputBegan:Connect(function(Input)
+    if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+        if locked == true then return end
+        Holding = true
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(Input)
+    if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+        if locked == true then return end
+        Holding = false
+    end
+end)
+
+RunService.RenderStepped:Connect(function()
+    FOVCircle.Position = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+    FOVCircle.Radius = EV.CircleRadius
+    FOVCircle.Filled = EV.CircleFilled
+    FOVCircle.Color = EV.CircleColor
+    FOVCircle.Visible = EV.CircleVisible
+    FOVCircle.Radius = EV.CircleRadius
+    FOVCircle.Transparency = EV.CircleTransparency
+    FOVCircle.NumSides = EV.CircleSides
+    FOVCircle.Thickness = EV.CircleThickness
+    
+    if locked == true then
+        TweenService:Create(Camera, TweenInfo.new(EV.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, lastTarget.Character[EV.AimPart].Position)}):Play()
+    end
+
+    if Holding == true and EV.AimbotEnabled == true and not locked then
+        local tar = GetClosestPlayer()
+        lastTarget = tar
+        TweenService:Create(Camera, TweenInfo.new(EV.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, tar.Character[EV.AimPart].Position)}):Play()
+    end
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(inputObject, gameProcessedEvent)
+    
+    if inputObject.KeyCode == Enum.KeyCode[EV.LockKey] and gameProcessedEvent == false then 
+        
+        if locked == true then
+            locked = false
+            lastTarget = nil
+            Holding = false
+        else
+            if lastTarget == nil then return end
+            locked = true
+        end
+        
+    end
+    
+end)
+-- AIMLOCK
+
+-- Keybind
+
+game:GetService("UserInputService").InputBegan:Connect(function(inputObject, gameProcessedEvent)
+    if inputObject.KeyCode == Enum.KeyCode.P and gameProcessedEvent == false then
+		if OthersFrame.Visible == false then
+			OthersFrame.Visible = true
+		elseif OthersFrame.Visible == true then
+			OthersFrame.Visible = false
+		end
+    end
+end)
+
+-- Keybind
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Legit-Aimbot--Safe-lvl-2/Safe Aimbot-Customizable white list at main · misterblodi/Legit-Aimbot--Safe-lvl-2
